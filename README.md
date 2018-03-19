@@ -16,7 +16,7 @@ Di sini ada istilah *scale up* dan *scale down*.
 Di sini kita bisa mencoba Swarm Mode melalui [Katacoda](https://katacoda.com/courses/docker-orchestration/).
 Langkahnya adalah :
 
-**1.Inisialisasi Swarm Mode**
+#### 1.Inisialisasi Swarm Mode**
 Cara inisialisasi Docker Swarm mode adalah melalui perintah *init*.
 
 ```docker swarm init```
@@ -25,7 +25,7 @@ Node pertama yang diinisialisasikan ini akan otomatis menjadi **manager**. Sedan
 Dari inisialisasi ini akan dihasilkan sebuah **token** untuk menmabahkan node lain.
 Simpan **token*** ini untuk *scaling cluster* kita di kemudian hari jika kite membuahtuhkan *scaling*.
 
-**2.Join Cluster**
+#### 2.Join Cluster
 
 Setelah Swarm mode di *enable* , kita bisa menambahkan node. Jika suatu ketika node *down* misalkan karena *crash*, kontainer yang berjalan di host tersebut akan otomatis mengalihkan ke node lain yang aktif. Ini menjanjikan *high-availability* untuk service kita.
 
@@ -53,7 +53,8 @@ Cara join cluster adalah :
    
    maka akan terlihat node sekarang menjadi 2, **ID** dengan tanda * merupakan **Leader** atau **manager**.
    
-**3. Buat Overlay Network**
+#### 3. Buat Overlay Network
+
 *Overlay network* digunakan untuk meng-*enable* kontainer yang ada di host yang berbeda untuk berkomunikasi. Sangat mendukung untuk *deployment* skala besar pada *cloud*.
 Di sini kita akan membuat *overlay network* yang disebut *skynet*. Semua container yang terdaftar pada jaringan ini dapat berkomunikasi.
 
@@ -61,7 +62,7 @@ Caranya kita jalankan perintah berikut pada **MANAGER**:
 
 ```docker network create -d overlay skynet```
 
-**4.Deploy Service**
+#### 4.Deploy Service
 
 Pada **MANAGER** kita jalankan :
 
@@ -77,11 +78,11 @@ Untuk melihat list container pada node pertama (manager) atau kedua (worker), bi
 
 ```docker ps```
 
-Jika kita ingin menjalankan HTTP pada port publik kita, ini akan dijalankan oleh 2 kontainer, kita dapat menggunakan perintah :
+Jika kita ingin menjalankan HTTP pada port publik kita, ini akan dijalankan oleh 2 kontainer, lalu kita jalankan :
 
 ```curl docker```
 
-**5.Memeriksa Service**
+#### 5.Memeriksa Service
 
 Kita dapat memeriksa service kita running atau tidak pada masing-masing kontainer dengan perintah :
 
@@ -103,7 +104,8 @@ Kita juga bisa menggunakan ID dari sebuah node :
 
 > Perintah pada poin 5 ini dijalankan di manager bukan di worker
 
-**6.Scaling Service**
+#### 6.Scaling Service
+
 Service bisa kita scale menjadi beberapa instance yang run di cluster.
 Kita dapat men-*scale* service http yang sebelumnya 2 menjadi 5 ( dalam hal ini *scalling up* ) dengan perintah :
 
